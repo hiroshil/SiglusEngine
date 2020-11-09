@@ -77,8 +77,11 @@ def Compress(string,level):
     return newString
 
 try:
-    dll=CDLL(os.getcwd()+'\\Decryption.dll')
-except:
+    if sys.maxsize <= 2**32:
+        dll=CDLL(os.getcwd()+'\\32bit\\Decryption.dll')
+    else:
+        dll=CDLL(os.getcwd()+'\\64bit\\Decryption.dll')
+except Exception:
     print("Can't open Decryption.dll")
     quit()
 
